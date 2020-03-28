@@ -1,4 +1,0 @@
-com\mktx\ems\amq\route\OrderRouteBuilder.class
-com\mktx\ems\amq\model\Order.class
-com\mktx\ems\amq\EmsAmqPocApplication.class
-com\mktx\ems\amq\processor\OrderProcessor.class
