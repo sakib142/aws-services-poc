@@ -6,9 +6,6 @@ ems-amq-poc
 
 This POC is all about creating ActiveMQ broker using a docker compose file and to access queues and topics.
 
-Kindly follow the steps mentioned in below link to create a ActiveMQ broker using a docker compose file.
-
-https://bitbucket.vip.marketaxess.com/projects/EMS/repos/ems-poc/browse/ems-scripts
 
 Follow below steps to create a spring boot application which connects to the activemq broker and perform operations with queue and topics using camel.
 
@@ -30,14 +27,6 @@ spring.activemq.broker-url=tcp://<Docker IP>:61616
 
 8. Observe the outputs in target queue and topic. 
 
-
-
-### Prerequisites
-
-A docker compose file must be ready to create ActiveMQ broker.
-Follow the below link to get docker compose file
-
-https://bitbucket.vip.marketaxess.com/projects/EMS/repos/ems-poc/browse/ems-scripts
 
 
  
