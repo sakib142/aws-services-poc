@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	(....)
+	<timestamp key="byDay" datePattern="yyyyMMdd'T'HHmmss" />
+	<appender name="JSON"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+	</appender>
+
+	<appender name="JSON_TCP"
+		class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+		<remoteHost>10.8.191.114</remoteHost>
+		<port>10514</port>
+		<keepAliveDuration>1 minute</keepAliveDuration>
+		<encoder class="net.logstash.logback.encoder.LogstashEncoder">
+			<prefix
+				class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+				<layout class="ch.qos.logback.classic.PatternLayout">
+					<pattern>
+						e0f03161c0904cba4d1e9886ae4cdf05 %mdc{keyThatDoesNotExist}
+					</pattern>
+				</layout>
+			</prefix>
+		</encoder>
+	</appender>
+
+	<root level="error">
+		<appender-ref ref="JSON_TCP" />
+		<appender-ref ref="JSON" />
+	</root>
+</configuration>
+
+
+
+

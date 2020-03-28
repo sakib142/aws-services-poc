@@ -1,0 +1,1 @@
+class=com.mktx.camel.component.aws.kinesis.KinesisComponent

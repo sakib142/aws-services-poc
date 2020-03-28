@@ -1,0 +1,23 @@
+version: '3.0'
+services:
+  fix-gtw-container:
+    image: ems-fix-gtw_image:latest
+    container_name: "ems_fix_gtw"
+    ports:
+      - "6011:6011"
+      - "4321:4321"
+    environment:
+      - KINESIS_HOST= http://10.8.20.136:4568
+      - AWS_ACCESS_KEY_ID= XXXXXXXXXXX
+      - AWS_SECRET_ACCESS_KEY=XXXXXXXXXXX
+      - AWS_DEFAULT_REGION=us-east-2
+  order-container:
+    image: ems-order-processor_image:latest
+    container_name: "ems_order"
+    ports:
+      - "6012:6012"
+    environment:
+      - KINESIS_HOST= http://10.8.20.136:4568
+      - AWS_ACCESS_KEY_ID= XXXXXXXXXXX
+      - AWS_SECRET_ACCESS_KEY=XXXXXXXXXXX
+      - AWS_DEFAULT_REGION=us-east-2

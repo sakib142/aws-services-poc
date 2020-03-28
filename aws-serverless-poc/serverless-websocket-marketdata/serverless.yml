@@ -1,0 +1,36 @@
+
+service: 
+ name:serverless-websocket-marketdata
+#app: myapp
+#tenant: jitendra1189ujn
+
+provider:
+  name: mktx
+  runtime: nodejs10.x
+
+
+functions:
+  connect:
+    handler: handler.connect
+    events:
+      - websocket:
+          route: connect
+      - websocket:
+          route: $default
+  disconnect:
+    handler: handler.disconnect
+    events:
+      - websocket:
+          route: disconnect
+
+   # manage custom routes     
+  fetch_market_depth:
+    handler: handler.marketdata
+    events:
+      - websocket:
+          route: fetch_market_depth
+          #routeResponseSelectionExpression: $default
+
+plugins :
+      - serverless-websockets-plugin
+      - serverless-offline

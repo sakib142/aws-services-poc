@@ -1,0 +1,106 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.2.RELEASE'
+	id 'java'
+}
+
+group = 'com.mktx'
+version = '0.0.1-SNAPSHOT'
+
+
+jar {
+	manifest {
+		attributes(
+				'Main-Class': 'com.mktx.order.svc.gradle'
+		)
+	}
+}
+
+
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+apply plugin: 'java'
+apply plugin: 'io.spring.dependency-management'
+
+dependencyManagement {
+	imports {
+		mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+
+}
+
+ext {
+	javaVersion = "11"
+	coreVersion = "2.2.0rc10"
+	springbootVersion = "2.1.2.RELEASE"
+	mockitoVersion = "2.23.4"
+	springdataVersion = "2.1.4.RELEASE"
+	camelVersion = "2.24.1"
+	commonsLang3Version = "3.8.1"
+	logbackVersion = "1.2.3"
+	jacksonVersion = "2.9.8"
+}
+
+//configurations {
+//	runtime.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+//}
+
+repositories {
+	jcenter()
+	mavenCentral()
+	//This is for picking up artifacts from local maven rpo that is settings.xml
+	mavenLocal()
+	maven {
+		url "http://maven.restlet.org"
+	}
+
+}
+
+dependencies {
+	implementation group: 'org.springframework.boot',name: 'spring-boot-starter', version: springbootVersion
+	implementation 'org.postgresql:postgresql:42.2.5'
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springbootVersion
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: springbootVersion
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot
+	implementation group: 'org.springframework.boot', name: 'spring-boot', version: springbootVersion
+	implementation group: 'org.springframework.data', name: 'spring-data-commons', version: springdataVersion
+	compile group: 'org.springframework.boot', name: 'spring-boot-autoconfigure', version: springdataVersion
+// https://mvnrepository.com/artifact/org.apache.camel/camel-swagger-java-starter
+	implementation group: 'org.apache.camel', name: 'camel-swagger-java-starter', version: camelVersion
+	implementation group: 'org.webjars', name: 'swagger-ui', version: '3.23.4'
+	implementation group: 'org.webjars', name: 'webjars-locator', version: '0.36'
+	//Hibernate
+	implementation group: 'org.hibernate', name: 'hibernate-envers', version: '5.4.1.Final'
+    //Camel Dependencies
+	implementation group: 'org.apache.camel', name: 'camel-spring-boot-starter', version: camelVersion
+	implementation group: 'org.apache.camel', name: 'camel-core', version: camelVersion
+	implementation group: 'org.apache.camel', name: 'camel-jackson-starter', version: camelVersion
+	implementation group: 'org.apache.camel', name: 'camel-restlet-starter', version: camelVersion
+	//Commons
+	implementation group: 'org.apache.commons', name: 'commons-lang3', version: commonsLang3Version
+	//Redis Dependencies
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version: '2.1.4.RELEASE'
+	implementation group: 'biz.paluch.redis', name: 'lettuce', version: '4.4.3.Final'
+	//jackson
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: jacksonVersion
+	implementation group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-base', version: jacksonVersion
+	implementation group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-json-provider', version: jacksonVersion
+	implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: jacksonVersion
+	//logback
+	testImplementation group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
+	//http Components
+	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.5'
+	compile group: 'org.apache.httpcomponents', name: 'httpcore', version: '4.4.5'
+	compileOnly 'org.projectlombok:lombok:1.18.8'
+	annotationProcessor 'org.projectlombok:lombok:1.18.8'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.1.2.RELEASE'
+}
+

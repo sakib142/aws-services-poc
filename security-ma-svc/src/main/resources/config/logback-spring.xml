@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="15 seconds">
+
+    <property name="LOG_PATH" value="log"/>
+
+    <appender name="DATA-LOGGER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/security-rest.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!-- 	<Pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] %-5level %logger{36}.%M - %msg%n</Pattern> -->
+            <!-- 	<Pattern>%d{ISO8601} | %-5.5p | %-16.50t | %-32.32c{1} | %m%n</Pattern> -->
+            <!-- 	<Pattern>%d{ISO8601} | %-5.5level | %-16.50thread | %logger{32} | %msg%n</Pattern> -->
+            <!--	<Pattern>%d{ISO8601} | %-5.5p | %t | %-16.50t | %class{36} | Line:%L | %m%n</Pattern> -->
+            <!--	<Pattern>%d{ISO8601} | %-5.5p | %t | %class{36} | Line:%L | %m%n</Pattern> -->
+            <Pattern>%-110(%d{ISO8601} | %-5level | %thread) | %logger{32} - %msg%n</Pattern>
+
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/archived/security-rest_%d{dd-MM-yyyy}_%i.log</fileNamePattern>
+            <maxFileSize>5MB</maxFileSize>
+            <maxHistory>5</maxHistory>
+            <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>%-110(%d{ISO8601} | %-5level | %thread) | %logger{32} - %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.trax.ems.security" level="info" />
+
+    <!-- LOG everything at INFO level -->
+    <root level="info">
+        <appender-ref ref="DATA-LOGGER"/>
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>

@@ -1,0 +1,14 @@
+version: '3.0'
+services:
+  ref-data-container:
+    image: ems-ref-data_image:latest
+    container_name: "ems_ref_data"
+    ports:
+      - "8012:8012"
+      - "6565:6565"
+    environment:
+      - KINESIS_HOST= http://10.8.20.136:4568
+      - AWS_ACCESS_KEY_ID= XXXXXXXXXXX
+      - AWS_SECRET_ACCESS_KEY=XXXXXXXXXXX
+      - AWS_DEFAULT_REGION=us-east-2
+    

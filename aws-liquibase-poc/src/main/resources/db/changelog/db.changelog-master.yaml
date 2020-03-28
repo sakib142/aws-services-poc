@@ -1,0 +1,155 @@
+databaseChangeLog:
+  - include:
+      file: src\main\resources\db\changelog\db.changelog-sql.sql
+  - changeSet:
+      id: 1
+      author: abindra
+      changes:
+        - createTable:
+            tableName: orders
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: clientOrderId
+                  type: varchar(50)
+              - column:
+                  name: firmId
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(50)
+              - column:
+                  name: senderCompany
+                  type: varchar(50)
+
+  - changeSet:
+      id: 1.0
+      author: abindra
+      changes:
+        - tagDatabase:
+            tag: tag1.0
+
+  - changeSet:
+      id: 2
+      author: abindra
+      runOnChange: true
+      changes:
+        - addColumn:
+            tableName: orders
+            columns:
+              - column:
+                  name: isin
+                  type: varchar(8)
+      rollback:
+         - sql:
+             sql: alter table orders drop column isin
+
+  - changeSet:
+      id: 2.0
+      author: abindra
+      changes:
+        - tagDatabase:
+            tag: tag2.0
+
+  - changeSet:
+      id: 3
+      author: abindra
+      comment: "Orders Data insertion script"
+      changes:
+        - insert:
+            tableName: orders
+            columns:
+              - column:
+                  name: clientOrderId
+                  value: "COID1234"
+              - column:
+                  name: firmId
+                  value: "FIRM1234"
+              - column:
+                  name: status
+                  value: "NEW"
+              - column:
+                  name: senderCompany
+                  value: "JP Morgan"
+              - column:
+                  name: isin
+                  value: "ISIN1234"
+        - insert:
+             tableName: orders
+             columns:
+              - column:
+                  name: clientOrderId
+                  value: "COID5678"
+              - column:
+                  name: firmId
+                  value: "FIRM5678"
+              - column:
+                  name: status
+                  value: "COMPLETED"
+              - column:
+                  name: senderCompany
+                  value: "Morgan Stanley"
+              - column:
+                  name: isin
+                  value: "ISIN5678"
+      rollback:
+         - sql:
+             sql: delete from orders  
+
+  - changeSet:
+      id: 3.0
+      author: abindra
+      changes:
+        - tagDatabase:
+            tag: tag3.0
+
+
+  - changeSet:
+      id: 4
+      author: abindra
+      changes:
+        - createTable:
+            tableName: marketdepth
+            column:
+              - column:
+                  name: id
+                  type: int
+            column:
+              - column:
+                  name: sourceVenue
+                  type: varchar(50)
+            column:
+              - column:
+                  name: sourceFeed
+                  type: varchar(50)
+            column:
+              - column:
+                  name: instId
+                  type: varchar(50)
+      rollback:
+        - dropTable:
+            tableName: marketdepth
+
+  - changeSet:
+      id: 4.0
+      author: abindra
+      changes:
+        - tagDatabase:
+            tag: tag4.0
+
+  
+      
+
+
+
+
+
+

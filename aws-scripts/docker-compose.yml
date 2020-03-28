@@ -1,0 +1,53 @@
+version: '2.1'
+
+services:
+  ems_postgres_db:
+    image: "postgres:11"
+    container_name: "ems_postgres"
+    ports:
+      - "5432:5432"
+  ems_amq:
+    image: webcenter/activemq:latest
+    container_name: "ems_activemq"
+    ports:
+      - "61616:61616"
+      - "8161:8161"
+      - "61613:61613"
+    environment:
+      - ACTIVEMQ_NAME= activemq
+      - ACTIVEMQ_REMOVE_DEFAULT_ACCOUNT= 'True'
+      - ACTIVEMQ_ADMIN_LOGIN= admin
+      - ACTIVEMQ_ADMIN_PASSWORD= admin
+  ems_redis:
+    image: redis
+    container_name: "ems_cache"
+    ports:
+      - "6379:6379"
+  ems_localstack:
+    image: localstack/localstack:0.9.0
+    container_name: "ems_aws_services"
+    ports:
+      - "4567-4597:4567-4597"
+      - "${PORT_WEB_UI-8080}:${PORT_WEB_UI-8080}"
+    environment:
+      - SERVICES=${SERVICES- }
+      - DEBUG=${DEBUG- }
+      - DATA_DIR=${DATA_DIR- }
+      - PORT_WEB_UI=${PORT_WEB_UI- }
+      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR- }
+      - KINESIS_ERROR_PROBABILITY=${KINESIS_ERROR_PROBABILITY- }
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+  ems_pgadmin_gui:
+    image: dpage/pgadmin4
+    container_name: ems_pgdmin
+    ports:
+      - "${PGADMIN_PORT:-5050}:80" 
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-kbiawat@traxmarkets.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+    volumes:
+      - "${TMPDIR:-/tmp/pgadmin-gui}:/tmp/pgadmin-gui"
+    
