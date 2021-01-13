@@ -4,12 +4,6 @@ Configure your environment and micro service to capture API traces
 
 ## Getting Started
 
-https://marketaxess.atlassian.net/browse/EMS2-16
-
-### Prerequisites
-
-Please refer to - https://marketaxess.atlassian.net/wiki/spaces/EMS/pages/38765102/Datadog+Setup+And+Configuration for Datadog setup
-
 ### Installing
 
 1. Install Datadog agent for windows OS
