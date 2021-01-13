@@ -2,15 +2,9 @@
 
 This project is a sample code for performing CRUD operations with DynamoDB.
 
-## Getting Started
-
-Part 1. https://marketaxess.atlassian.net/secure/RapidBoard.jspa?rapidView=84&modal=detail&selectedIssue=EMS2-18
-
 ```
 mvn clean install -P shaded-jar
 ```
-
-Part 2. https://marketaxess.atlassian.net/browse/EMS2-4 
 
 Need to run this poc against the LocalStack 
 
