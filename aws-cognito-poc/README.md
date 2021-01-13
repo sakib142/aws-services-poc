@@ -1,7 +1,6 @@
 # Project Title
 
 This project is a proof of concept for AWS Cognito related Lambda function, whose job is to get all the users in a user pool.
-Follow the step by step instructions mentioned under the section (Get all the Users in a User Pool) in document: https://marketaxess.atlassian.net/wiki/spaces/EMS/pages/38700291/Cognito
 
 ## Getting Started
 
