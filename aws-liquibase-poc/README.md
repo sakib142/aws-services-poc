@@ -6,10 +6,6 @@ ems-liquibase-poc
 
 Agenda of this POC is to demonstrate the usage of liquibase.
 
-Kindly follow the steps mentioned in below link to create a Postgres db using a docker compose file.
-
-https://marketaxess.atlassian.net/wiki/spaces/EMS/pages/41353428/Postgres+POC
-
 Follow below steps to create a spring boot application which connects to the postgres instance and execution of liquibase scripts on application startup.
 
 
@@ -44,7 +40,6 @@ For rollback, use below command in command prompt at the path as root folder of 
 A docker compose file must be ready to create a postgres database.
 Follow the below link to get docker compose file
 
-https://bitbucket.vip.marketaxess.com/projects/EMS/repos/ems-poc/browse/ems-scripts
 
 
  
