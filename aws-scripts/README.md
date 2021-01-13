@@ -2,21 +2,9 @@
 
 This project is for local setup of all the dependent services used by EMS using docker-compose.
 
-## Getting Started
-
-https://marketaxess.atlassian.net/browse/EMS2-74
-
-
-### Prerequisites
-
-1. Install Docker in the windows machine, please refer to - https://marketaxess.atlassian.net/wiki/spaces/EMS/pages/37912581/Docker+Setup
- 
-1. Point your VM to the assigned docker box, please refer to this - https://wiki.marketaxess.com/pages/viewpage.action?spaceKey=AWW&title=Docker+with+Dedicated+Docker+VM 
-
 ### Installing
 
 1. Checkout ems poc project 
-``` git checkout ssh://git@bitbucket.vip.marketaxess.com:7999/ems/ems-poc.git ```
 1. Go inside the ems-scripts folder
 1. Right click and start git bash
 ```
