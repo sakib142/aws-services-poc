@@ -3,8 +3,6 @@
 This project is a proof of concept for AWS Cognito Data Sync across region, as part of this POC< we will create a user [Signup]
 by decrypting the data from dynamoDB table.
 
-Follow the step by step instructions mentioned under the section (Get all the Users in a User Pool) in document: https://marketaxess.atlassian.net/wiki/spaces/EMS/pages/40534408/Cognito+cross+regional+replication
-
 ## Getting Started
 
 1. Get this code in your machine.
